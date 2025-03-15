@@ -1,6 +1,10 @@
 <?php
 require 'db_connect.php';
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 17f0271 (Updated index.php with new changes)
 $pendingTasks = $conn->query("SELECT * FROM tasks WHERE is_completed = 0 ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
 $completedTasks = $conn->query("SELECT * FROM tasks WHERE is_completed = 1 ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -101,7 +105,6 @@ $completedTasks = $conn->query("SELECT * FROM tasks WHERE is_completed = 1 ORDER
                 if (response === "success") {
                     document.getElementById(`completed-task-${id}`).remove();
                     
-                    // If no completed tasks remain, show "No completed tasks" message
                     if (document.getElementById("completedTasks").children.length === 0) {
                         document.getElementById("completedTasks").innerHTML = '<p class="no-tasks">No completed tasks.</p>';
                     }
