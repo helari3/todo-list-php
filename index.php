@@ -1,7 +1,6 @@
 <?php
 require 'db_connect.php';
 
-// Fetch tasks separately for pending and completed tasks
 $pendingTasks = $conn->query("SELECT * FROM tasks WHERE is_completed = 0 ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
 $completedTasks = $conn->query("SELECT * FROM tasks WHERE is_completed = 1 ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -10,7 +9,7 @@ $completedTasks = $conn->query("SELECT * FROM tasks WHERE is_completed = 1 ORDER
 <head>
     <link rel="stylesheet" type="text/css" href="style.css?v=1">
     <title>To-Do List</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery for AJAX -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 </head>
 <body>
     <div class="container full-width">
@@ -66,13 +65,13 @@ $completedTasks = $conn->query("SELECT * FROM tasks WHERE is_completed = 1 ORDER
             let editBtn = taskBox.querySelector(".edit-btn");
             let saveBtn = taskBox.querySelector(".save-btn");
 
-            input.style.display = "inline"; // Show input field
-            input.style.width = span.offsetWidth + "px"; // Match width to span
+            input.style.display = "inline"; 
+            input.style.width = span.offsetWidth + "px"; 
             input.value = span.textContent.trim();
             input.focus();
-            span.style.display = "none"; // Hide text
-            editBtn.style.display = "none"; // Hide EDIT button
-            saveBtn.style.display = "inline"; // Show SAVE button
+            span.style.display = "none"; 
+            editBtn.style.display = "none"; 
+            saveBtn.style.display = "inline"; 
         }
 
         function saveTask(id) {
@@ -87,10 +86,10 @@ $completedTasks = $conn->query("SELECT * FROM tasks WHERE is_completed = 1 ORDER
             $.post("edit_task.php", { id: id, task_name: taskName }, function(response) {
                 if (response === "success") {
                     span.textContent = taskName;
-                    span.style.display = "inline"; // Show updated text
-                    input.style.display = "none"; // Hide input field
-                    editBtn.style.display = "inline"; // Show EDIT button
-                    saveBtn.style.display = "none"; // Hide SAVE button
+                    span.style.display = "inline"; 
+                    input.style.display = "none"; 
+                    editBtn.style.display = "inline"; 
+                    saveBtn.style.display = "none"; 
                 } else {
                     alert("Error updating task!");
                 }
